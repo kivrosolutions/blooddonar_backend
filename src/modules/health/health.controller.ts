@@ -7,7 +7,7 @@ export const healthCheck = async (_req: Request, res: Response) => {
 
     return res.status(200).json({
       success: true,
-      message: 'Server is healthy',
+      message: 'Server was healthy',
       data: {
         status: 'ok',
         timestamp: new Date().toISOString(),
