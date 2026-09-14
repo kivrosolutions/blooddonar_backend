@@ -14,4 +14,9 @@ export const config = {
   cors: {
     origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
   },
+  imagekit: {
+    publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
+    privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
+    urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT!,
+  },
 };

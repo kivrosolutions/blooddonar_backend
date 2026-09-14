@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { uploadFile } from './uploads.controller';
-import { upload } from './uploads.middleware';
+import { uploadFile, deleteFile } from './uploads.controller';
+import { uploadSingle } from './uploads.middleware';
 import { authenticate } from '../auth/auth.middleware';
 
 const router = Router();
 
 router.use(authenticate);
 
-router.post('/', upload.single('file'), uploadFile);
+router.post('/', uploadSingle, uploadFile);
+router.delete('/:fileId', deleteFile);
 
 export { router as uploadsRouter };

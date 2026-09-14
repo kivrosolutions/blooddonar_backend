@@ -1,0 +1,1013 @@
+- generic [active] [ref=f8e1]:
+  - generic [ref=f8e2]:
+    - banner [ref=f8e3]:
+      - generic [ref=f8e5]:
+        - link "Resend" [ref=f8e8] [cursor=pointer]:
+          - /url: /home
+          - img "Resend" [ref=f8e9]
+        - list [ref=f8e11]:
+          - listitem [ref=f8e12]:
+            - button "Features" [ref=f8e13]
+          - listitem [ref=f8e16]:
+            - button "Company" [ref=f8e17]
+          - listitem [ref=f8e20]:
+            - button "Enterprise" [ref=f8e21]
+          - listitem [ref=f8e24]:
+            - button "Help" [ref=f8e25]
+          - listitem [ref=f8e28]:
+            - button "Docs" [ref=f8e29]
+          - listitem [ref=f8e32]:
+            - button "AI" [ref=f8e33]
+          - listitem [ref=f8e36]:
+            - link "Pricing" [ref=f8e37] [cursor=pointer]:
+              - /url: /pricing
+        - generic [ref=f8e38]:
+          - link "Log in" [ref=f8e39] [cursor=pointer]:
+            - /url: /login
+          - link "Get started" [ref=f8e40] [cursor=pointer]:
+            - /url: /signup
+    - generic [ref=f8e41]:
+      - heading "Pricing" [level=1] [ref=f8e42]
+      - paragraph [ref=f8e43]: Start for free and scale as you grow.
+    - generic [ref=f8e44]:
+      - generic [ref=f8e46]:
+        - tablist [ref=f8e47]:
+          - tab "Transactional emails" [selected] [ref=f8e48] [cursor=pointer]
+          - tab "Marketing emails" [ref=f8e49] [cursor=pointer]
+        - generic [ref=f8e51]:
+          - generic [ref=f8e53]:
+            - group "Value Selector" [ref=f8e54]:
+              - slider [ref=f8e59]: "0"
+            - generic [aria-hidden]:
+              - generic: 3,000
+              - generic: 50,000
+              - generic: 100,000
+              - generic: 200,000
+              - generic: 500,000
+              - generic: 1,000,000
+              - generic: 1,500,000
+              - generic: 2,500,000
+              - generic: 3,000,000+
+          - generic [ref=f8e60]:
+            - generic [ref=f8e61]:
+              - heading "Free Recommended" [level=3] [ref=f8e62]:
+                - text: Free
+                - generic [ref=f8e63]: Recommended
+              - generic [ref=f8e64]: $0 / mo
+              - paragraph [ref=f8e66]: 3,000 emails / mo
+              - list [ref=f8e67]:
+                - listitem [ref=f8e68]:
+                  - generic [ref=f8e71]: 100 emails a day
+                - listitem [ref=f8e72]:
+                  - generic [ref=f8e75]: 3 domains
+                - listitem [ref=f8e76]:
+                  - generic [ref=f8e79]: Ticket support
+                - listitem [ref=f8e80]:
+                  - generic [ref=f8e83]: 10,000 automation runs
+                - listitem [ref=f8e84]:
+                  - generic [ref=f8e87]: 30-day data retention
+                - listitem [ref=f8e88]:
+                  - generic [ref=f8e91]: Single Sign-On
+              - link "Get started" [ref=f8e92] [cursor=pointer]:
+                - /url: /signup
+            - generic [ref=f8e93]:
+              - heading "Pro Recommended" [level=3] [ref=f8e94]:
+                - text: Pro
+                - generic [ref=f8e95]: Recommended
+              - generic [ref=f8e96]: $20 / mo
+              - generic [ref=f8e97]:
+                - paragraph [ref=f8e98]: 50,000 emails / mo
+                - paragraph [ref=f8e99]: "Extra emails: $0.90 / 1,000"
+              - list [ref=f8e100]:
+                - listitem [ref=f8e101]:
+                  - generic [ref=f8e104]: All Free features
+                - listitem [ref=f8e105]:
+                  - generic [ref=f8e108]: 10 domains
+                - listitem [ref=f8e109]:
+                  - generic [ref=f8e112]: No daily email limit
+                - listitem [ref=f8e113]:
+                  - generic [ref=f8e116]: 5 webhook endpoints
+                - listitem [ref=f8e117]:
+                  - generic [ref=f8e120]: 100 AI credits / mo
+                - listitem [ref=f8e121]:
+                  - generic [ref=f8e124]: Additional domains with add-on
+                - listitem [ref=f8e125]:
+                  - generic [ref=f8e128]: Single Sign-On
+              - link "Get started" [ref=f8e129] [cursor=pointer]:
+                - /url: /signup
+            - generic [ref=f8e130]:
+              - heading "Scale Recommended" [level=3] [ref=f8e131]:
+                - text: Scale
+                - generic [ref=f8e132]: Recommended
+              - generic [ref=f8e133]: $90 / mo
+              - generic [ref=f8e134]:
+                - paragraph [ref=f8e135]: 100,000 emails / mo
+                - paragraph [ref=f8e136]: "Extra emails: $0.90 / 1,000"
+              - list [ref=f8e137]:
+                - listitem [ref=f8e138]:
+                  - generic [ref=f8e141]: All Pro features
+                - listitem [ref=f8e142]:
+                  - generic [ref=f8e145]: 1,000 domains
+                - listitem [ref=f8e146]:
+                  - generic [ref=f8e149]: Dedicated Slack channel
+                - listitem [ref=f8e150]:
+                  - generic [ref=f8e153]: 10 webhook endpoints
+                - listitem [ref=f8e154]:
+                  - generic [ref=f8e157]: 500 AI credits / mo
+                - listitem [ref=f8e158]:
+                  - generic [ref=f8e161]: SSO with add-on
+                - listitem [ref=f8e162]:
+                  - generic [ref=f8e165]: Dedicated IP with add-on
+              - link "Get started" [ref=f8e166] [cursor=pointer]:
+                - /url: /signup
+            - generic [ref=f8e167]:
+              - heading "Custom Recommended" [level=3] [ref=f8e168]:
+                - text: Custom
+                - generic [ref=f8e169]: Recommended
+              - generic [ref=f8e170]: Enterprise
+              - paragraph [ref=f8e172]: Performance at any scale
+              - list [ref=f8e173]:
+                - listitem [ref=f8e174]:
+                  - generic [ref=f8e177]: All Scale features
+                - listitem [ref=f8e178]:
+                  - generic [ref=f8e181]: 99.99% uptime SLA
+                - listitem [ref=f8e182]:
+                  - generic [ref=f8e185]: Personalized migration support
+                - listitem [ref=f8e186]:
+                  - generic [ref=f8e189]: Guaranteed response times
+                - listitem [ref=f8e190]:
+                  - generic [ref=f8e193]: Dedicated CSM
+                - listitem [ref=f8e194]:
+                  - generic [ref=f8e197]: Single Sign-On
+                - listitem [ref=f8e198]:
+                  - generic [ref=f8e201]: Custom usage plan
+                - listitem [ref=f8e202]:
+                  - generic [ref=f8e205]: Enterprise rate limits
+              - link "Contact us" [ref=f8e206] [cursor=pointer]:
+                - /url: /enterprise
+      - generic [ref=f8e207]:
+        - link [ref=f8e209] [cursor=pointer]:
+          - /url: /pricing.md
+        - generic [ref=f8e213]:
+          - heading "Pay-as-you-go" [level=2] [ref=f8e214]
+          - generic [ref=f8e215]:
+            - generic [ref=f8e218]:
+              - heading "Emails" [level=3] [ref=f8e219]
+              - generic [ref=f8e220]:
+                - generic [ref=f8e221]: Continue sending and receiving emails beyond your quota. Resend automatically charges your plan's overage rate for each additional bucket of 1,000 emails. Available to paid subscriptions.
+                - link "Enable pay-as-you-go" [ref=f8e223] [cursor=pointer]:
+                  - /url: /settings/usage
+            - generic [ref=f8e226]:
+              - heading "Automations · $0.0015 / per run" [level=3] [ref=f8e227]
+              - generic [ref=f8e228]:
+                - generic [ref=f8e229]: Start with 10,000 Automation Runs for free, and scale as you need. Resend automatically charges for each run beyond the free limit. Available to paid subscriptions.
+                - link "Enable pay-as-you-go" [ref=f8e231] [cursor=pointer]:
+                  - /url: /settings/usage
+        - generic [ref=f8e232]:
+          - heading "Add-ons" [level=2] [ref=f8e233]
+          - generic [ref=f8e235]:
+            - generic [ref=f8e236]:
+              - heading "Domains - $20 / mo" [level=2] [ref=f8e237]
+              - generic [ref=f8e238]:
+                - generic [ref=f8e239]: Your plan already comes with domains, but if you send from a separate one for each customer or brand, that number runs out quickly. This adds 100 more on top of it. Available on Pro and Scale, and you can add or remove it yourself whenever you need to. On Enterprise, your domain limit is set in your contract.
+                - link "Add domains" [ref=f8e241] [cursor=pointer]:
+                  - /url: /settings/usage
+            - generic [ref=f8e242]:
+              - heading "Dedicated IPs - $30 / mo" [level=2] [ref=f8e243]
+              - generic [ref=f8e244]:
+                - generic [ref=f8e245]: Available to customers exceeding 3,000 emails sent per day on the Scale plan. We take great care to maintain good-standing shared IP's, but for some high-volume senders, you can't leave anything up to chance. We will warmup, monitor, and autoscale it based on your utilization so you can focus on one thing, sending.
+                - link "Request dedicated IP" [ref=f8e247] [cursor=pointer]:
+                  - /url: /support#contact
+            - generic [ref=f8e248]:
+              - heading "Single Sign-On - $150 / mo" [level=2] [ref=f8e249]
+              - generic [ref=f8e250]:
+                - generic [ref=f8e251]: Let your team sign in to Resend with your identity provider. Available as an add-on on Scale plans, and included on Enterprise plans.
+                - link "Get started" [ref=f8e253] [cursor=pointer]:
+                  - /url: /signup
+        - generic [ref=f8e254]:
+          - heading "Sending & receiving" [level=2] [ref=f8e255]
+          - table [ref=f8e257]:
+            - rowgroup [ref=f8e258]:
+              - row [ref=f8e259]:
+                - columnheader [ref=f8e260]
+                - columnheader "Free" [ref=f8e261]
+                - columnheader "Pro" [ref=f8e262]
+                - columnheader "Scale" [ref=f8e263]
+                - columnheader "Enterprise" [ref=f8e264]
+            - rowgroup [ref=f8e265]:
+              - row [ref=f8e266]:
+                - cell [ref=f8e267]:
+                  - button "Daily limit" [ref=f8e268]
+                - cell "100" [ref=f8e269]
+                - cell "No limit" [ref=f8e270]
+                - cell "No limit" [ref=f8e271]
+                - cell "No limit" [ref=f8e272]
+              - row [ref=f8e273]:
+                - cell [ref=f8e274]:
+                  - button "Inbound emails" [ref=f8e275]
+                - cell [ref=f8e276]
+                - cell [ref=f8e279]
+                - cell [ref=f8e282]
+                - cell [ref=f8e285]
+              - row [ref=f8e288]:
+                - cell [ref=f8e289]:
+                  - button "RESTful API" [ref=f8e290]
+                - cell [ref=f8e291]
+                - cell [ref=f8e294]
+                - cell [ref=f8e297]
+                - cell [ref=f8e300]
+              - row [ref=f8e303]:
+                - cell [ref=f8e304]:
+                  - button "SMTP relay" [ref=f8e305]
+                - cell [ref=f8e306]
+                - cell [ref=f8e309]
+                - cell [ref=f8e312]
+                - cell [ref=f8e315]
+              - row [ref=f8e318]:
+                - cell [ref=f8e319]:
+                  - button "Official SDKs" [ref=f8e320]
+                - cell [ref=f8e321]
+                - cell [ref=f8e324]
+                - cell [ref=f8e327]
+                - cell [ref=f8e330]
+              - row [ref=f8e333]:
+                - cell [ref=f8e334]:
+                  - button "Schedule emails" [ref=f8e335]
+                - cell [ref=f8e336]
+                - cell [ref=f8e339]
+                - cell [ref=f8e342]
+                - cell [ref=f8e345]
+              - row [ref=f8e348]:
+                - cell [ref=f8e349]:
+                  - button "Batch sending" [ref=f8e350]
+                - cell [ref=f8e351]
+                - cell [ref=f8e354]
+                - cell [ref=f8e357]
+                - cell [ref=f8e360]
+              - row [ref=f8e363]:
+                - cell [ref=f8e364]:
+                  - button "Open tracking" [ref=f8e365]
+                - cell [ref=f8e366]
+                - cell [ref=f8e369]
+                - cell [ref=f8e372]
+                - cell [ref=f8e375]
+              - row [ref=f8e378]:
+                - cell [ref=f8e379]:
+                  - button "Link tracking" [ref=f8e380]
+                - cell [ref=f8e381]
+                - cell [ref=f8e384]
+                - cell [ref=f8e387]
+                - cell [ref=f8e390]
+              - row [ref=f8e393]:
+                - cell [ref=f8e394]:
+                  - button "React Email" [ref=f8e395]
+                - cell [ref=f8e396]
+                - cell [ref=f8e399]
+                - cell [ref=f8e402]
+                - cell [ref=f8e405]
+        - generic [ref=f8e408]:
+          - heading "Deliverability & reliability" [level=2] [ref=f8e409]
+          - table [ref=f8e411]:
+            - rowgroup [ref=f8e412]:
+              - row [ref=f8e413]:
+                - columnheader [ref=f8e414]
+                - columnheader "Free" [ref=f8e415]
+                - columnheader "Pro" [ref=f8e416]
+                - columnheader "Scale" [ref=f8e417]
+                - columnheader "Enterprise" [ref=f8e418]
+            - rowgroup [ref=f8e419]:
+              - row [ref=f8e420]:
+                - cell [ref=f8e421]:
+                  - button "Custom domains" [ref=f8e422]
+                - cell "3" [ref=f8e423]
+                - cell "10" [ref=f8e424]
+                - cell "1,000" [ref=f8e425]
+                - cell "Flexible" [ref=f8e426]
+              - row [ref=f8e427]:
+                - cell [ref=f8e428]:
+                  - button "Additional domains" [ref=f8e429]
+                - cell "–" [ref=f8e430]
+                - cell "With add-on" [ref=f8e431]
+                - cell "With add-on" [ref=f8e432]
+                - cell "Flexible" [ref=f8e433]
+              - row [ref=f8e434]:
+                - cell [ref=f8e435]:
+                  - button "Dedicated IPs" [ref=f8e436]
+                - cell "–" [ref=f8e437]
+                - cell "–" [ref=f8e438]
+                - cell "With add-on" [ref=f8e439]
+                - cell "With add-on" [ref=f8e440]
+              - row [ref=f8e441]:
+                - cell [ref=f8e442]:
+                  - button "Dedicated IP warming" [ref=f8e443]
+                - cell "–" [ref=f8e444]
+                - cell "–" [ref=f8e445]
+                - cell [ref=f8e446]
+                - cell [ref=f8e449]
+              - row [ref=f8e452]:
+                - cell [ref=f8e453]:
+                  - button "Pristine shared IPs" [ref=f8e454]
+                - cell [ref=f8e455]
+                - cell [ref=f8e458]
+                - cell [ref=f8e461]
+                - cell [ref=f8e464]
+              - row [ref=f8e467]:
+                - cell [ref=f8e468]:
+                  - button "Automatic suppression list" [ref=f8e469]
+                - cell [ref=f8e470]
+                - cell [ref=f8e473]
+                - cell [ref=f8e476]
+                - cell [ref=f8e479]
+              - row [ref=f8e482]:
+                - cell [ref=f8e483]:
+                  - button "Bounce details" [ref=f8e484]
+                - cell [ref=f8e485]
+                - cell [ref=f8e488]
+                - cell [ref=f8e491]
+                - cell [ref=f8e494]
+              - row [ref=f8e497]:
+                - cell [ref=f8e498]:
+                  - button "Multi-region" [ref=f8e499]
+                - cell [ref=f8e500]
+                - cell [ref=f8e503]
+                - cell [ref=f8e506]
+                - cell [ref=f8e509]
+              - row [ref=f8e512]:
+                - cell [ref=f8e513]:
+                  - button "Data retention" [ref=f8e514]
+                - cell "30 days" [ref=f8e515]
+                - cell "30 days" [ref=f8e516]
+                - cell "30 days" [ref=f8e517]
+                - cell "Flexible" [ref=f8e518]
+              - row [ref=f8e519]:
+                - cell [ref=f8e520]:
+                  - button "Deliverability insights" [ref=f8e521]
+                - cell [ref=f8e522]
+                - cell [ref=f8e525]
+                - cell [ref=f8e528]
+                - cell [ref=f8e531]
+              - row [ref=f8e534]:
+                - cell [ref=f8e535]:
+                  - button "DKIM, SPF, DMARC authentication" [ref=f8e536]
+                - cell [ref=f8e537]
+                - cell [ref=f8e540]
+                - cell [ref=f8e543]
+                - cell [ref=f8e546]
+              - row [ref=f8e549]:
+                - cell [ref=f8e550]:
+                  - button "Webhook endpoints" [ref=f8e551]
+                - cell "1 endpoint" [ref=f8e552]
+                - cell "5 endpoints" [ref=f8e553]
+                - cell "10 endpoints" [ref=f8e554]
+                - cell "Flexible" [ref=f8e555]
+              - row [ref=f8e556]:
+                - cell [ref=f8e557]:
+                  - button "Webhook events" [ref=f8e558]
+                - cell "All events" [ref=f8e559]
+                - cell "All events" [ref=f8e560]
+                - cell "All events" [ref=f8e561]
+                - cell "All events" [ref=f8e562]
+        - generic [ref=f8e563]:
+          - heading "Security & privacy" [level=2] [ref=f8e564]
+          - table [ref=f8e566]:
+            - rowgroup [ref=f8e567]:
+              - row [ref=f8e568]:
+                - columnheader [ref=f8e569]
+                - columnheader "Free" [ref=f8e570]
+                - columnheader "Pro" [ref=f8e571]
+                - columnheader "Scale" [ref=f8e572]
+                - columnheader "Enterprise" [ref=f8e573]
+            - rowgroup [ref=f8e574]:
+              - row [ref=f8e575]:
+                - cell [ref=f8e576]:
+                  - button "Social login" [ref=f8e577]
+                - cell [ref=f8e578]
+                - cell [ref=f8e581]
+                - cell [ref=f8e584]
+                - cell [ref=f8e587]
+              - row [ref=f8e590]:
+                - cell [ref=f8e591]:
+                  - button "Single Sign-On" [ref=f8e592]
+                - cell "–" [ref=f8e593]
+                - cell "–" [ref=f8e594]
+                - cell "With add-on" [ref=f8e595]
+                - cell "Included" [ref=f8e596]
+              - row [ref=f8e597]:
+                - cell [ref=f8e598]:
+                  - button "GDPR compliance" [ref=f8e599]
+                - cell [ref=f8e600]
+                - cell [ref=f8e603]
+                - cell [ref=f8e606]
+                - cell [ref=f8e609]
+              - row [ref=f8e612]:
+                - cell [ref=f8e613]:
+                  - button "SOC 2 Type II certification" [ref=f8e614]
+                - cell [ref=f8e615]
+                - cell [ref=f8e618]
+                - cell [ref=f8e621]
+                - cell [ref=f8e624]
+              - row [ref=f8e627]:
+                - cell [ref=f8e628]:
+                  - button "Penetration testing" [ref=f8e629]
+                - cell [ref=f8e630]
+                - cell [ref=f8e633]
+                - cell [ref=f8e636]
+                - cell [ref=f8e639]
+              - row [ref=f8e642]:
+                - cell [ref=f8e643]:
+                  - button "DDoS protection" [ref=f8e644]
+                - cell [ref=f8e645]
+                - cell [ref=f8e648]
+                - cell [ref=f8e651]
+                - cell [ref=f8e654]
+              - row [ref=f8e657]:
+                - cell [ref=f8e658]:
+                  - button "Automated backups" [ref=f8e659]
+                - cell [ref=f8e660]
+                - cell [ref=f8e663]
+                - cell [ref=f8e666]
+                - cell [ref=f8e669]
+              - row [ref=f8e672]:
+                - cell [ref=f8e673]:
+                  - button "Multi-factor authentication" [ref=f8e674]
+                - cell [ref=f8e675]
+                - cell [ref=f8e678]
+                - cell [ref=f8e681]
+                - cell [ref=f8e684]
+              - row [ref=f8e687]:
+                - cell [ref=f8e688]:
+                  - button "API key permissions" [ref=f8e689]
+                - cell [ref=f8e690]
+                - cell [ref=f8e693]
+                - cell [ref=f8e696]
+                - cell [ref=f8e699]
+              - row [ref=f8e702]:
+                - cell [ref=f8e703]:
+                  - button "Signed webhook endpoints" [ref=f8e704]
+                - cell [ref=f8e705]
+                - cell [ref=f8e708]
+                - cell [ref=f8e711]
+                - cell [ref=f8e714]
+        - generic [ref=f8e717]:
+          - heading "Customer support" [level=2] [ref=f8e718]
+          - table [ref=f8e720]:
+            - rowgroup [ref=f8e721]:
+              - row [ref=f8e722]:
+                - columnheader [ref=f8e723]
+                - columnheader "Free" [ref=f8e724]
+                - columnheader "Pro" [ref=f8e725]
+                - columnheader "Scale" [ref=f8e726]
+                - columnheader "Enterprise" [ref=f8e727]
+            - rowgroup [ref=f8e728]:
+              - row [ref=f8e729]:
+                - cell [ref=f8e730]:
+                  - button "Ticket support" [ref=f8e731]
+                - cell [ref=f8e732]
+                - cell [ref=f8e735]
+                - cell [ref=f8e738]
+                - cell [ref=f8e741]
+              - row [ref=f8e744]:
+                - cell [ref=f8e745]:
+                  - button "Slack support" [ref=f8e746]
+                - cell "–" [ref=f8e747]
+                - cell "–" [ref=f8e748]
+                - cell [ref=f8e749]
+                - cell [ref=f8e752]
+              - row [ref=f8e755]:
+                - cell [ref=f8e756]:
+                  - button "Urgent response SLA" [ref=f8e757]
+                - cell "–" [ref=f8e758]
+                - cell "–" [ref=f8e759]
+                - cell [ref=f8e760]
+                - cell [ref=f8e763]
+              - row [ref=f8e766]:
+                - cell [ref=f8e767]:
+                  - button "Deliverability expertise" [ref=f8e768]
+                - cell "–" [ref=f8e769]
+                - cell [ref=f8e770]
+                - cell [ref=f8e773]
+                - cell [ref=f8e776]
+              - row [ref=f8e779]:
+                - cell [ref=f8e780]:
+                  - button "In-app documentation" [ref=f8e781]
+                - cell [ref=f8e782]
+                - cell [ref=f8e785]
+                - cell [ref=f8e788]
+                - cell [ref=f8e791]
+              - row [ref=f8e794]:
+                - cell [ref=f8e795]:
+                  - button "AI assistant" [ref=f8e796]
+                - cell [ref=f8e797]
+                - cell [ref=f8e800]
+                - cell [ref=f8e803]
+                - cell [ref=f8e806]
+        - generic [ref=f8e809]:
+          - heading "AI credits" [level=2] [ref=f8e810]
+          - table [ref=f8e812]:
+            - rowgroup [ref=f8e813]:
+              - row [ref=f8e814]:
+                - columnheader [ref=f8e815]
+                - columnheader "Free" [ref=f8e816]
+                - columnheader "Pro" [ref=f8e817]
+                - columnheader "Scale" [ref=f8e818]
+                - columnheader "Enterprise" [ref=f8e819]
+            - rowgroup [ref=f8e820]:
+              - row [ref=f8e821]:
+                - cell [ref=f8e822]:
+                  - button "AI credits / mo" [ref=f8e823]
+                - cell "5" [ref=f8e824]
+                - cell "100" [ref=f8e825]
+                - cell "500" [ref=f8e826]
+                - cell "Flexible" [ref=f8e827]
+        - generic [ref=f8e828]:
+          - paragraph [ref=f8e829]: Trusted by
+          - list [ref=f8e831]:
+            - listitem [ref=f8e832]:
+              - img "Warner Bros" [ref=f8e834]
+            - listitem [ref=f8e835]:
+              - img "Gumroad" [ref=f8e837]
+            - listitem [ref=f8e838]:
+              - img "Tailwind" [ref=f8e840]
+            - listitem [ref=f8e841]:
+              - img "Beast Industries" [ref=f8e843]
+            - listitem [ref=f8e844]:
+              - img "Replit" [ref=f8e846]
+            - listitem [ref=f8e847]:
+              - img "Max" [ref=f8e849]
+            - listitem [ref=f8e850]:
+              - img "eBay" [ref=f8e852]
+            - listitem [ref=f8e853]:
+              - img "OSN+" [ref=f8e855]
+            - listitem [ref=f8e856]:
+              - img "Valentino" [ref=f8e858]
+            - listitem [ref=f8e859]:
+              - img "TOTVS" [ref=f8e861]
+        - generic [ref=f8e862]:
+          - heading "Frequently asked questions" [level=2] [ref=f8e863]
+          - region [ref=f8e864]:
+            - heading [level=3] [ref=f8e866]:
+              - button [ref=f8e867]:
+                - paragraph [ref=f8e870]: Do you offer any discounts for annual subscriptions?
+            - heading [level=3] [ref=f8e872]:
+              - button [ref=f8e873]:
+                - paragraph [ref=f8e876]: Do you offer non-profit or education pricing?
+            - heading [level=3] [ref=f8e878]:
+              - button [ref=f8e879]:
+                - paragraph [ref=f8e882]: What payment methods do you accept?
+            - heading [level=3] [ref=f8e884]:
+              - button [ref=f8e885]:
+                - paragraph [ref=f8e888]: Is there a free trial available?
+            - heading [level=3] [ref=f8e890]:
+              - button [ref=f8e891]:
+                - paragraph [ref=f8e894]: Who can I contact about a custom plan?
+            - heading [level=3] [ref=f8e896]:
+              - button [ref=f8e897]:
+                - paragraph [ref=f8e900]: What happens if I send more emails than my plan allows?
+            - heading [level=3] [ref=f8e902]:
+              - button [ref=f8e903]:
+                - paragraph [ref=f8e906]: What is the difference between transactional and marketing emails?
+            - heading [level=3] [ref=f8e908]:
+              - button [ref=f8e909]:
+                - paragraph [ref=f8e912]: What does "unlimited broadcast sending" mean?
+            - heading [level=3] [ref=f8e914]:
+              - button [ref=f8e915]:
+                - paragraph [ref=f8e918]: Do broadcast emails count against the transactional email limits?
+            - heading [level=3] [ref=f8e920]:
+              - button [ref=f8e921]:
+                - paragraph [ref=f8e924]: How are inbound emails counted?
+    - generic [ref=f8e927]:
+      - list [ref=f8e928]:
+        - listitem [ref=f8e929]:
+          - blockquote [ref=f8e930]:
+            - generic [ref=f8e931]: "\"Our team loves Resend. It makes email sending so easy and reliable. After we switched to Dedicated IPs, our deliverability improved tremendously and we don't hear complaints about emails landing on spam anymore.\""
+            - generic [ref=f8e932]:
+              - generic [ref=f8e933]:
+                - img "Infisical" [ref=f8e936]
+                - img "Vlad Matsiiako" [ref=f8e939]
+              - generic [ref=f8e940]:
+                - generic [ref=f8e941]: Vlad Matsiiako
+                - generic [ref=f8e942]: Co-founder of Infisical
+        - listitem [ref=f8e943]:
+          - blockquote [ref=f8e944]:
+            - generic [ref=f8e945]: "\"As a developer I love the approach that the Resend team is taking. Its so refreshing. They are also extremely user-centric and helpful in terms of getting you up and running, sending beautiful emails that deliver.\""
+            - generic [ref=f8e946]:
+              - generic [ref=f8e947]:
+                - img "Mintlify" [ref=f8e950]
+                - img "Hahnbee Lee" [ref=f8e953]
+              - generic [ref=f8e954]:
+                - generic [ref=f8e955]: Hahnbee Lee
+                - generic [ref=f8e956]: Co-Founder at Mintlify
+        - listitem [ref=f8e957]:
+          - blockquote [ref=f8e958]:
+            - generic [ref=f8e959]: "\"We value tools that feel stable, well thought out, and aligned with the standards we expect across our stack. Resend meets those expectations. It lets our team stay focused on building the larger platform rather than getting pulled into the overhead that typically comes with legacy email infrastructure.\""
+            - generic [ref=f8e960]:
+              - generic [ref=f8e961]:
+                - img "MrBeast" [ref=f8e964]
+                - img "Bradley Greenwood" [ref=f8e967]
+              - generic [ref=f8e968]:
+                - generic [ref=f8e969]: Bradley Greenwood
+                - generic [ref=f8e970]: VP of Engineering at MrBeast
+        - listitem [ref=f8e971]:
+          - blockquote [ref=f8e972]:
+            - generic [ref=f8e973]: "\"Our partnership with Resend has been a great experience. They've made sure we can focus on what we do best—building our product and growing our business.\""
+            - generic [ref=f8e974]:
+              - generic [ref=f8e975]:
+                - img "Gumroad" [ref=f8e978]
+                - img "Sahil Lavingia" [ref=f8e981]
+              - generic [ref=f8e982]:
+                - generic [ref=f8e983]: Sahil Lavingia
+                - generic [ref=f8e984]: CEO of Gumroad
+        - listitem [ref=f8e985]:
+          - blockquote [ref=f8e986]:
+            - generic [ref=f8e987]: "\"Switching over to Resend from SendGrid marked a significant improvement in our email management. We started with a small test - waitlist emails for our iOS and Windows apps. Within 30 minutes, we were done.\""
+            - generic [ref=f8e988]:
+              - generic [ref=f8e989]:
+                - img "Raycast" [ref=f8e992]
+                - img "Thomas Mann" [ref=f8e995]
+              - generic [ref=f8e996]:
+                - generic [ref=f8e997]: Thomas Mann
+                - generic [ref=f8e998]: Founder & CEO of Raycast
+        - listitem [ref=f8e999]:
+          - blockquote [ref=f8e1000]:
+            - generic [ref=f8e1001]: "\"The simplicity and reliability of Resend allowed our engineers to focus on building features rather than troubleshooting email infrastructure.\""
+            - generic [ref=f8e1002]:
+              - generic [ref=f8e1003]:
+                - img "Replit" [ref=f8e1006]
+                - img "Amadeo Pellicce" [ref=f8e1009]
+              - generic [ref=f8e1010]:
+                - generic [ref=f8e1011]: Amadeo Pellicce
+                - generic [ref=f8e1012]: Connectors, Agents and Automations Lead at Replit
+        - listitem [ref=f8e1013]:
+          - blockquote [ref=f8e1014]:
+            - generic [ref=f8e1015]: "\"We're a small team with a lot on our plates. Email infrastructure is something we don't want to think about, and with Resend we don't have to.\""
+            - generic [ref=f8e1016]:
+              - generic [ref=f8e1017]:
+                - img "Tailwind" [ref=f8e1020]
+                - img "Peter Suhm" [ref=f8e1023]
+              - generic [ref=f8e1024]:
+                - generic [ref=f8e1025]: Peter Suhm
+                - generic [ref=f8e1026]: Ops at Tailwind
+        - listitem [ref=f8e1027]:
+          - blockquote [ref=f8e1028]:
+            - generic [ref=f8e1029]: "\"The best part about taking Resend into production was that there was no friction at all.\""
+            - generic [ref=f8e1030]:
+              - generic [ref=f8e1031]:
+                - img "Braintrust" [ref=f8e1034]
+                - img "Tara Nagar" [ref=f8e1037]
+              - generic [ref=f8e1038]:
+                - generic [ref=f8e1039]: Tara Nagar
+                - generic [ref=f8e1040]: Software Engineer at Braintrust
+        - listitem [ref=f8e1041]:
+          - blockquote [ref=f8e1042]:
+            - generic [ref=f8e1043]: "\"The flexibility of Resend is what we value most. It allows us to quickly adapt and refine our email communications as our products evolve.\""
+            - generic [ref=f8e1044]:
+              - generic [ref=f8e1045]:
+                - img "Turso" [ref=f8e1048]
+                - img "Glauber Costa" [ref=f8e1051]
+              - generic [ref=f8e1052]:
+                - generic [ref=f8e1053]: Glauber Costa
+                - generic [ref=f8e1054]: Founder and CEO at Turso
+        - listitem [ref=f8e1055]:
+          - blockquote [ref=f8e1056]:
+            - generic [ref=f8e1057]: "\"Resend is email with simpler APIs, better webhooks, and best-in-class debugging.\""
+            - generic [ref=f8e1058]:
+              - generic [ref=f8e1059]:
+                - img "Inngest" [ref=f8e1062]
+                - img "Dan Farrelly" [ref=f8e1065]
+              - generic [ref=f8e1066]:
+                - generic [ref=f8e1067]: Dan Farrelly
+                - generic [ref=f8e1068]: CTO and Co-Founder of Inngest
+      - list [ref=f8e1069]:
+        - listitem [ref=f8e1070]:
+          - blockquote [ref=f8e1071]:
+            - generic [ref=f8e1072]: "\"Our team loves Resend. It makes email sending so easy and reliable. After we switched to Dedicated IPs, our deliverability improved tremendously and we don't hear complaints about emails landing on spam anymore.\""
+            - generic [ref=f8e1073]:
+              - generic [ref=f8e1074]:
+                - img "Infisical" [ref=f8e1077]
+                - img "Vlad Matsiiako" [ref=f8e1080]
+              - generic [ref=f8e1081]:
+                - generic [ref=f8e1082]: Vlad Matsiiako
+                - generic [ref=f8e1083]: Co-founder of Infisical
+        - listitem [ref=f8e1084]:
+          - blockquote [ref=f8e1085]:
+            - generic [ref=f8e1086]: "\"As a developer I love the approach that the Resend team is taking. Its so refreshing. They are also extremely user-centric and helpful in terms of getting you up and running, sending beautiful emails that deliver.\""
+            - generic [ref=f8e1087]:
+              - generic [ref=f8e1088]:
+                - img "Mintlify" [ref=f8e1091]
+                - img "Hahnbee Lee" [ref=f8e1094]
+              - generic [ref=f8e1095]:
+                - generic [ref=f8e1096]: Hahnbee Lee
+                - generic [ref=f8e1097]: Co-Founder at Mintlify
+        - listitem [ref=f8e1098]:
+          - blockquote [ref=f8e1099]:
+            - generic [ref=f8e1100]: "\"We value tools that feel stable, well thought out, and aligned with the standards we expect across our stack. Resend meets those expectations. It lets our team stay focused on building the larger platform rather than getting pulled into the overhead that typically comes with legacy email infrastructure.\""
+            - generic [ref=f8e1101]:
+              - generic [ref=f8e1102]:
+                - img "MrBeast" [ref=f8e1105]
+                - img "Bradley Greenwood" [ref=f8e1108]
+              - generic [ref=f8e1109]:
+                - generic [ref=f8e1110]: Bradley Greenwood
+                - generic [ref=f8e1111]: VP of Engineering at MrBeast
+        - listitem [ref=f8e1112]:
+          - blockquote [ref=f8e1113]:
+            - generic [ref=f8e1114]: "\"Our partnership with Resend has been a great experience. They've made sure we can focus on what we do best—building our product and growing our business.\""
+            - generic [ref=f8e1115]:
+              - generic [ref=f8e1116]:
+                - img "Gumroad" [ref=f8e1119]
+                - img "Sahil Lavingia" [ref=f8e1122]
+              - generic [ref=f8e1123]:
+                - generic [ref=f8e1124]: Sahil Lavingia
+                - generic [ref=f8e1125]: CEO of Gumroad
+        - listitem [ref=f8e1126]:
+          - blockquote [ref=f8e1127]:
+            - generic [ref=f8e1128]: "\"Switching over to Resend from SendGrid marked a significant improvement in our email management. We started with a small test - waitlist emails for our iOS and Windows apps. Within 30 minutes, we were done.\""
+            - generic [ref=f8e1129]:
+              - generic [ref=f8e1130]:
+                - img "Raycast" [ref=f8e1133]
+                - img "Thomas Mann" [ref=f8e1136]
+              - generic [ref=f8e1137]:
+                - generic [ref=f8e1138]: Thomas Mann
+                - generic [ref=f8e1139]: Founder & CEO of Raycast
+        - listitem [ref=f8e1140]:
+          - blockquote [ref=f8e1141]:
+            - generic [ref=f8e1142]: "\"The simplicity and reliability of Resend allowed our engineers to focus on building features rather than troubleshooting email infrastructure.\""
+            - generic [ref=f8e1143]:
+              - generic [ref=f8e1144]:
+                - img "Replit" [ref=f8e1147]
+                - img "Amadeo Pellicce" [ref=f8e1150]
+              - generic [ref=f8e1151]:
+                - generic [ref=f8e1152]: Amadeo Pellicce
+                - generic [ref=f8e1153]: Connectors, Agents and Automations Lead at Replit
+        - listitem [ref=f8e1154]:
+          - blockquote [ref=f8e1155]:
+            - generic [ref=f8e1156]: "\"We're a small team with a lot on our plates. Email infrastructure is something we don't want to think about, and with Resend we don't have to.\""
+            - generic [ref=f8e1157]:
+              - generic [ref=f8e1158]:
+                - img "Tailwind" [ref=f8e1161]
+                - img "Peter Suhm" [ref=f8e1164]
+              - generic [ref=f8e1165]:
+                - generic [ref=f8e1166]: Peter Suhm
+                - generic [ref=f8e1167]: Ops at Tailwind
+        - listitem [ref=f8e1168]:
+          - blockquote [ref=f8e1169]:
+            - generic [ref=f8e1170]: "\"The best part about taking Resend into production was that there was no friction at all.\""
+            - generic [ref=f8e1171]:
+              - generic [ref=f8e1172]:
+                - img "Braintrust" [ref=f8e1175]
+                - img "Tara Nagar" [ref=f8e1178]
+              - generic [ref=f8e1179]:
+                - generic [ref=f8e1180]: Tara Nagar
+                - generic [ref=f8e1181]: Software Engineer at Braintrust
+        - listitem [ref=f8e1182]:
+          - blockquote [ref=f8e1183]:
+            - generic [ref=f8e1184]: "\"The flexibility of Resend is what we value most. It allows us to quickly adapt and refine our email communications as our products evolve.\""
+            - generic [ref=f8e1185]:
+              - generic [ref=f8e1186]:
+                - img "Turso" [ref=f8e1189]
+                - img "Glauber Costa" [ref=f8e1192]
+              - generic [ref=f8e1193]:
+                - generic [ref=f8e1194]: Glauber Costa
+                - generic [ref=f8e1195]: Founder and CEO at Turso
+        - listitem [ref=f8e1196]:
+          - blockquote [ref=f8e1197]:
+            - generic [ref=f8e1198]: "\"Resend is email with simpler APIs, better webhooks, and best-in-class debugging.\""
+            - generic [ref=f8e1199]:
+              - generic [ref=f8e1200]:
+                - img "Inngest" [ref=f8e1203]
+                - img "Dan Farrelly" [ref=f8e1206]
+              - generic [ref=f8e1207]:
+                - generic [ref=f8e1208]: Dan Farrelly
+                - generic [ref=f8e1209]: CTO and Co-Founder of Inngest
+      - list [ref=f8e1210]:
+        - listitem [ref=f8e1211]:
+          - blockquote [ref=f8e1212]:
+            - generic [ref=f8e1213]: "\"Our team loves Resend. It makes email sending so easy and reliable. After we switched to Dedicated IPs, our deliverability improved tremendously and we don't hear complaints about emails landing on spam anymore.\""
+            - generic [ref=f8e1214]:
+              - generic [ref=f8e1215]:
+                - img "Infisical" [ref=f8e1218]
+                - img "Vlad Matsiiako" [ref=f8e1221]
+              - generic [ref=f8e1222]:
+                - generic [ref=f8e1223]: Vlad Matsiiako
+                - generic [ref=f8e1224]: Co-founder of Infisical
+        - listitem [ref=f8e1225]:
+          - blockquote [ref=f8e1226]:
+            - generic [ref=f8e1227]: "\"As a developer I love the approach that the Resend team is taking. Its so refreshing. They are also extremely user-centric and helpful in terms of getting you up and running, sending beautiful emails that deliver.\""
+            - generic [ref=f8e1228]:
+              - generic [ref=f8e1229]:
+                - img "Mintlify" [ref=f8e1232]
+                - img "Hahnbee Lee" [ref=f8e1235]
+              - generic [ref=f8e1236]:
+                - generic [ref=f8e1237]: Hahnbee Lee
+                - generic [ref=f8e1238]: Co-Founder at Mintlify
+        - listitem [ref=f8e1239]:
+          - blockquote [ref=f8e1240]:
+            - generic [ref=f8e1241]: "\"We value tools that feel stable, well thought out, and aligned with the standards we expect across our stack. Resend meets those expectations. It lets our team stay focused on building the larger platform rather than getting pulled into the overhead that typically comes with legacy email infrastructure.\""
+            - generic [ref=f8e1242]:
+              - generic [ref=f8e1243]:
+                - img "MrBeast" [ref=f8e1246]
+                - img "Bradley Greenwood" [ref=f8e1249]
+              - generic [ref=f8e1250]:
+                - generic [ref=f8e1251]: Bradley Greenwood
+                - generic [ref=f8e1252]: VP of Engineering at MrBeast
+        - listitem [ref=f8e1253]:
+          - blockquote [ref=f8e1254]:
+            - generic [ref=f8e1255]: "\"Our partnership with Resend has been a great experience. They've made sure we can focus on what we do best—building our product and growing our business.\""
+            - generic [ref=f8e1256]:
+              - generic [ref=f8e1257]:
+                - img "Gumroad" [ref=f8e1260]
+                - img "Sahil Lavingia" [ref=f8e1263]
+              - generic [ref=f8e1264]:
+                - generic [ref=f8e1265]: Sahil Lavingia
+                - generic [ref=f8e1266]: CEO of Gumroad
+        - listitem [ref=f8e1267]:
+          - blockquote [ref=f8e1268]:
+            - generic [ref=f8e1269]: "\"Switching over to Resend from SendGrid marked a significant improvement in our email management. We started with a small test - waitlist emails for our iOS and Windows apps. Within 30 minutes, we were done.\""
+            - generic [ref=f8e1270]:
+              - generic [ref=f8e1271]:
+                - img "Raycast" [ref=f8e1274]
+                - img "Thomas Mann" [ref=f8e1277]
+              - generic [ref=f8e1278]:
+                - generic [ref=f8e1279]: Thomas Mann
+                - generic [ref=f8e1280]: Founder & CEO of Raycast
+        - listitem [ref=f8e1281]:
+          - blockquote [ref=f8e1282]:
+            - generic [ref=f8e1283]: "\"The simplicity and reliability of Resend allowed our engineers to focus on building features rather than troubleshooting email infrastructure.\""
+            - generic [ref=f8e1284]:
+              - generic [ref=f8e1285]:
+                - img "Replit" [ref=f8e1288]
+                - img "Amadeo Pellicce" [ref=f8e1291]
+              - generic [ref=f8e1292]:
+                - generic [ref=f8e1293]: Amadeo Pellicce
+                - generic [ref=f8e1294]: Connectors, Agents and Automations Lead at Replit
+        - listitem [ref=f8e1295]:
+          - blockquote [ref=f8e1296]:
+            - generic [ref=f8e1297]: "\"We're a small team with a lot on our plates. Email infrastructure is something we don't want to think about, and with Resend we don't have to.\""
+            - generic [ref=f8e1298]:
+              - generic [ref=f8e1299]:
+                - img "Tailwind" [ref=f8e1302]
+                - img "Peter Suhm" [ref=f8e1305]
+              - generic [ref=f8e1306]:
+                - generic [ref=f8e1307]: Peter Suhm
+                - generic [ref=f8e1308]: Ops at Tailwind
+        - listitem [ref=f8e1309]:
+          - blockquote [ref=f8e1310]:
+            - generic [ref=f8e1311]: "\"The best part about taking Resend into production was that there was no friction at all.\""
+            - generic [ref=f8e1312]:
+              - generic [ref=f8e1313]:
+                - img "Braintrust" [ref=f8e1316]
+                - img "Tara Nagar" [ref=f8e1319]
+              - generic [ref=f8e1320]:
+                - generic [ref=f8e1321]: Tara Nagar
+                - generic [ref=f8e1322]: Software Engineer at Braintrust
+        - listitem [ref=f8e1323]:
+          - blockquote [ref=f8e1324]:
+            - generic [ref=f8e1325]: "\"The flexibility of Resend is what we value most. It allows us to quickly adapt and refine our email communications as our products evolve.\""
+            - generic [ref=f8e1326]:
+              - generic [ref=f8e1327]:
+                - img "Turso" [ref=f8e1330]
+                - img "Glauber Costa" [ref=f8e1333]
+              - generic [ref=f8e1334]:
+                - generic [ref=f8e1335]: Glauber Costa
+                - generic [ref=f8e1336]: Founder and CEO at Turso
+        - listitem [ref=f8e1337]:
+          - blockquote [ref=f8e1338]:
+            - generic [ref=f8e1339]: "\"Resend is email with simpler APIs, better webhooks, and best-in-class debugging.\""
+            - generic [ref=f8e1340]:
+              - generic [ref=f8e1341]:
+                - img "Inngest" [ref=f8e1344]
+                - img "Dan Farrelly" [ref=f8e1347]
+              - generic [ref=f8e1348]:
+                - generic [ref=f8e1349]: Dan Farrelly
+                - generic [ref=f8e1350]: CTO and Co-Founder of Inngest
+    - generic [ref=f8e1351]:
+      - img "Resend" [ref=f8e1352]
+      - heading "Start sending tonight" [level=2] [ref=f8e1356]
+      - paragraph [ref=f8e1357]: Resend delivers mission-critical emails for someof the fastest growing teams.
+      - link "Sign up for free" [ref=f8e1358] [cursor=pointer]:
+        - /url: /signup
+    - contentinfo [ref=f8e1359]:
+      - generic [ref=f8e1360]:
+        - paragraph [ref=f8e1361]: "2261 Market Street #5039San Francisco, CA 94114"
+        - generic [ref=f8e1362]:
+          - link [ref=f8e1363] [cursor=pointer]:
+            - /url: https://x.com/resend
+            - img "X" [ref=f8e1364]
+          - link [ref=f8e1365] [cursor=pointer]:
+            - /url: https://github.com/resend
+            - img "GitHub" [ref=f8e1366]
+          - link [ref=f8e1367] [cursor=pointer]:
+            - /url: https://linkedin.com/company/resend
+            - img "LinkedIn" [ref=f8e1368]
+          - link [ref=f8e1369] [cursor=pointer]:
+            - /url: https://www.youtube.com/channel/UC0FkhoSz2kYqHVBk4L0QYIg
+            - img "Youtube" [ref=f8e1370]
+        - link "Status unknown" [ref=f8e1371] [cursor=pointer]:
+          - /url: /status
+      - generic [ref=f8e1377]:
+        - generic [ref=f8e1378]:
+          - paragraph [ref=f8e1379]: Features
+          - list [ref=f8e1380]:
+            - listitem [ref=f8e1381]:
+              - link "Automations" [ref=f8e1382] [cursor=pointer]:
+                - /url: /features/automations
+            - listitem [ref=f8e1383]:
+              - link "Audiences" [ref=f8e1384] [cursor=pointer]:
+                - /url: /features/audiences
+            - listitem [ref=f8e1385]:
+              - link "Broadcasts" [ref=f8e1386] [cursor=pointer]:
+                - /url: /features/broadcasts
+            - listitem [ref=f8e1387]:
+              - link "Inbound" [ref=f8e1388] [cursor=pointer]:
+                - /url: /features/inbound
+            - listitem [ref=f8e1389]:
+              - link "Templates" [ref=f8e1390] [cursor=pointer]:
+                - /url: /features/templates
+            - listitem [ref=f8e1391]:
+              - link "Webhooks" [ref=f8e1392] [cursor=pointer]:
+                - /url: /features/webhooks
+            - listitem [ref=f8e1393]:
+              - link "Dedicated IPs" [ref=f8e1394] [cursor=pointer]:
+                - /url: /features/dedicated-ips
+        - generic [ref=f8e1395]:
+          - paragraph [ref=f8e1396]: Resources
+          - list [ref=f8e1397]:
+            - listitem [ref=f8e1398]:
+              - link "Changelog" [ref=f8e1399] [cursor=pointer]:
+                - /url: /changelog
+            - listitem [ref=f8e1400]:
+              - link "Pricing" [ref=f8e1401] [cursor=pointer]:
+                - /url: /pricing
+            - listitem [ref=f8e1402]:
+              - link "Enterprise" [ref=f8e1403] [cursor=pointer]:
+                - /url: /enterprise
+            - listitem [ref=f8e1404]:
+              - link "Security" [ref=f8e1405] [cursor=pointer]:
+                - /url: /security
+            - listitem [ref=f8e1406]:
+              - link "SOC 2" [ref=f8e1407] [cursor=pointer]:
+                - /url: /security/soc-2
+            - listitem [ref=f8e1408]:
+              - link "GDPR" [ref=f8e1409] [cursor=pointer]:
+                - /url: /security/gdpr
+            - listitem [ref=f8e1410]:
+              - link "Brand" [ref=f8e1411] [cursor=pointer]:
+                - /url: /brand
+        - generic [ref=f8e1412]:
+          - paragraph [ref=f8e1413]: Company
+          - list [ref=f8e1414]:
+            - listitem [ref=f8e1415]:
+              - link "About" [ref=f8e1416] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f8e1417]:
+              - link "Blog" [ref=f8e1418] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=f8e1419]:
+              - link "Careers" [ref=f8e1420] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=f8e1421]:
+              - link "Clubs" [ref=f8e1422] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=f8e1423]:
+              - link "Customers" [ref=f8e1424] [cursor=pointer]:
+                - /url: /customers
+            - listitem [ref=f8e1425]:
+              - link "Humans" [ref=f8e1426] [cursor=pointer]:
+                - /url: /humans
+            - listitem [ref=f8e1427]:
+              - link "Philosophy" [ref=f8e1428] [cursor=pointer]:
+                - /url: /philosophy
+        - generic [ref=f8e1429]:
+          - paragraph [ref=f8e1430]: Help
+          - list [ref=f8e1431]:
+            - listitem [ref=f8e1432]:
+              - link "Support" [ref=f8e1433] [cursor=pointer]:
+                - /url: /support
+            - listitem [ref=f8e1434]:
+              - link "Status" [ref=f8e1435] [cursor=pointer]:
+                - /url: /status
+            - listitem [ref=f8e1436]:
+              - link "Migrate" [ref=f8e1437] [cursor=pointer]:
+                - /url: /migrate
+            - listitem [ref=f8e1438]:
+              - link "Knowledge base" [ref=f8e1439] [cursor=pointer]:
+                - /url: https://resend.com/docs/knowledge-base/introduction
+            - listitem [ref=f8e1440]:
+              - link "Legal policies" [ref=f8e1441] [cursor=pointer]:
+                - /url: /legal
+        - generic [ref=f8e1442]:
+          - paragraph [ref=f8e1443]: Community
+          - list [ref=f8e1444]:
+            - listitem [ref=f8e1445]:
+              - link "Events" [ref=f8e1446] [cursor=pointer]:
+                - /url: /events
+            - listitem [ref=f8e1447]:
+              - link "Insiders" [ref=f8e1448] [cursor=pointer]:
+                - /url: /insiders
+            - listitem [ref=f8e1449]:
+              - link "Open source" [ref=f8e1450] [cursor=pointer]:
+                - /url: /open-source
+            - listitem [ref=f8e1451]:
+              - link "Wallpapers" [ref=f8e1452] [cursor=pointer]:
+                - /url: /wallpapers
+  - region "Notifications alt+T"
+  - alert [ref=f8e1453]

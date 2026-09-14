@@ -11,6 +11,23 @@ export const uploadFile = asyncHandler(async (req: Request, res: Response) => {
     throw ApiError.badRequest('No file uploaded');
   }
 
-  const fileInfo = uploadsService.getFileInfo(req.file);
-  return ApiResponseHandler.created(res, fileInfo, 'File uploaded successfully');
+  const result = await uploadsService.uploadToImageKit(
+    req.file.buffer,
+    req.file.originalname,
+    '/uploads',
+    req.file.mimetype,
+  );
+
+  return ApiResponseHandler.created(res, result, 'File uploaded successfully');
+});
+
+export const deleteFile = asyncHandler(async (req: Request, res: Response) => {
+  const fileId = req.params.fileId as string;
+
+  if (!fileId) {
+    throw ApiError.badRequest('File ID is required');
+  }
+
+  await uploadsService.deleteFile(fileId);
+  return ApiResponseHandler.success(res, null, 'File deleted successfully');
 });

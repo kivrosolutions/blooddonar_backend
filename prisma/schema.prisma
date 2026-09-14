@@ -12,14 +12,205 @@ enum Role {
   ADMIN
 }
 
-model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  name      String
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+enum BloodGroup {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+}
 
-  @@map("users")
+enum DocumentType {
+  CNIC_FRONT
+  CNIC_BACK
+}
+
+enum DocumentStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum ReportStatus {
+  ACTIVE
+  EXPIRED
+}
+
+enum RequestStatus {
+  PENDING
+  CONTACTED
+  FULFILLED
+  EXPIRED
+  CANCELLED
+}
+
+enum EmailType {
+  CONFIRMATION
+  REMINDER
+  CONGRATULATIONS
+  PASSWORD_RESET
+  VERIFICATION
+}
+
+enum EmailDeliveryStatus {
+  SENT
+  FAILED
+  BOUNCED
+}
+
+model Donor {
+  id            String    @id @default(uuid())
+  fullName      String
+  phone         String    @unique
+  email         String    @unique
+  cnicNumber    String    @unique
+  password      String
+  role          Role      @default(USER)
+  profileImage  String?
+  profileImageFileId String?
+
+  isEmailVerified          Boolean     @default(false)
+  emailVerificationToken   String?
+  emailVerificationExpires DateTime?
+  phoneVerified            Boolean     @default(false)
+  phoneVerificationToken   String?
+  phoneVerificationExpires DateTime?
+  passwordResetToken       String?
+  passwordResetExpires     DateTime?
+
+  bloodGroup       BloodGroup
+  city             String
+  area             String
+  latitude         Float?
+  longitude        Float?
+  isAvailable      Boolean  @default(true)
+  isVerified       Boolean  @default(false)
+  isActive         Boolean  @default(true)
+  isBanned         Boolean  @default(false)
+  agreedToTermsAt  DateTime?
+  lastDonationDate DateTime?
+  totalDonations   Int      @default(0)
+  lastLoginAt      DateTime?
+
+  fcmToken  String?
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  sessions        DonorSession[]
+  documents       DonorDocument[]
+  bloodTestReports BloodTestReport[]
+  emailLogs       EmailLog[]
+
+  @@index([city])
+  @@index([bloodGroup, city])
+  @@index([isAvailable])
+  @@index([isVerified])
+  @@index([phone])
+  @@map("donors")
+}
+
+model DonorSession {
+  id               String   @id @default(uuid())
+  donorId          String
+  refreshTokenHash String
+  userAgent        String?
+  ipAddress        String?
+  deviceName       String?
+  platform         String?
+  isRevoked        Boolean  @default(false)
+  expiresAt        DateTime
+  createdAt        DateTime @default(now())
+
+  donor Donor @relation(fields: [donorId], references: [id], onDelete: Cascade)
+
+  @@index([donorId])
+  @@index([expiresAt])
+  @@map("donor_sessions")
+}
+
+model DonorDocument {
+  id              String         @id @default(uuid())
+  donorId         String
+  type            DocumentType
+  fileUrl         String
+  fileId          String?
+  mimeType        String
+  fileSize        Int
+  status          DocumentStatus @default(PENDING)
+  rejectionReason String?
+  notes           String?
+  uploadedAt      DateTime       @default(now())
+  reviewedAt      DateTime?
+  reviewedBy      String?
+
+  donor Donor @relation(fields: [donorId], references: [id], onDelete: Cascade)
+
+  @@index([donorId])
+  @@index([status])
+  @@map("donor_documents")
+}
+
+model BloodTestReport {
+  id          String       @id @default(uuid())
+  donorId     String
+  reportUrl   String
+  fileId      String?
+  bloodGroup  BloodGroup
+  labName     String?
+  hemoglobinLevel Float?
+  testedAt    DateTime?
+  uploadedAt  DateTime     @default(now())
+  expiresAt   DateTime
+  status      ReportStatus @default(ACTIVE)
+
+  donor Donor @relation(fields: [donorId], references: [id], onDelete: Cascade)
+
+  @@index([donorId])
+  @@index([status])
+  @@map("blood_test_reports")
+}
+
+model BloodRequest {
+  id              String        @id @default(uuid())
+  requesterName   String
+  requesterPhone  String
+  requesterEmail  String
+  patientName     String?
+  hospitalName    String?
+  bloodGroup      BloodGroup
+  city            String
+  area            String
+  latitude        Float?
+  longitude       Float?
+  unitsRequired   Int           @default(1)
+  requiredByDate  DateTime?
+  notes           String?
+  status          RequestStatus @default(PENDING)
+  fulfilledAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([bloodGroup, city])
+  @@index([status])
+  @@map("blood_requests")
+}
+
+model EmailLog {
+  id         String              @id @default(uuid())
+  donorId    String
+  type       EmailType
+  subject    String
+  status     EmailDeliveryStatus @default(SENT)
+  sentAt     DateTime            @default(now())
+  metadata   Json?
+
+  donor Donor @relation(fields: [donorId], references: [id], onDelete: Cascade)
+
+  @@index([donorId])
+  @@index([type])
+  @@map("email_logs")
 }

@@ -15,19 +15,27 @@ export const authenticate = async (req: Request, _res: Response, next: NextFunct
     const token = authHeader.split(' ')[1];
     const payload: TokenPayload = verifyAccessToken(token);
 
-    const user = await prisma.user.findUnique({
-      where: { id: payload.userId },
-      select: { id: true, email: true, role: true },
+    const donor = await prisma.donor.findUnique({
+      where: { id: payload.donorId },
+      select: { id: true, email: true, role: true, isActive: true, isBanned: true },
     });
 
-    if (!user) {
-      throw ApiError.unauthorized('User not found');
+    if (!donor) {
+      throw ApiError.unauthorized('Donor not found');
+    }
+
+    if (!donor.isActive) {
+      throw ApiError.forbidden('Account has been deactivated');
+    }
+
+    if (donor.isBanned) {
+      throw ApiError.forbidden('Account has been banned');
     }
 
     (req as AuthRequest).user = {
-      userId: user.id,
-      email: user.email,
-      role: user.role,
+      donorId: donor.id,
+      email: donor.email,
+      role: donor.role,
     };
 
     next();
