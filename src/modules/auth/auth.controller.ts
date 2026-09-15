@@ -5,25 +5,32 @@ import { AuthService } from './auth.service';
 import { registerSchema, loginSchema, refreshSchema, verifyEmailSchema, forgotPasswordSchema, resetPasswordSchema } from './auth.schema';
 import { ApiError } from '../../utils/ApiError';
 import { AuthRequest } from '../../types/auth.types';
+import { ZodError } from 'zod';
+import prisma from '../../config/database';
 
 const authService = new AuthService();
+
+function formatZodErrors(error: ZodError) {
+  return error.errors.map((err) => ({
+    field: err.path.join('.'),
+    message: err.message,
+  }));
+}
 
 export const register = asyncHandler(async (req: Request, res: Response) => {
   const result = registerSchema.safeParse(req.body);
   if (!result.success) {
-    throw ApiError.badRequest(result.error.errors[0].message);
+    throw ApiError.badRequest('Validation failed', formatZodErrors(result.error));
   }
 
-  const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined;
-
-  const data = await authService.register(result.data, files);
+  const data = await authService.register(result.data);
   return ApiResponseHandler.created(res, data, 'Donor registered successfully');
 });
 
 export const login = asyncHandler(async (req: Request, res: Response) => {
   const result = loginSchema.safeParse(req.body);
   if (!result.success) {
-    throw ApiError.badRequest(result.error.errors[0].message);
+    throw ApiError.badRequest('Validation failed', formatZodErrors(result.error));
   }
 
   const userAgent = req.headers['user-agent'];
@@ -36,7 +43,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 export const refreshToken = asyncHandler(async (req: Request, res: Response) => {
   const result = refreshSchema.safeParse(req.body);
   if (!result.success) {
-    throw ApiError.badRequest(result.error.errors[0].message);
+    throw ApiError.badRequest('Validation failed', formatZodErrors(result.error));
   }
 
   const data = await authService.refreshToken(result.data.refreshToken);
@@ -45,7 +52,51 @@ export const refreshToken = asyncHandler(async (req: Request, res: Response) => 
 
 export const getProfile = asyncHandler(async (req: Request, res: Response) => {
   const authReq = req as AuthRequest;
-  return ApiResponseHandler.success(res, authReq.user, 'Profile fetched successfully');
+  const donor = await prisma.donor.findUnique({
+    where: { id: authReq.user.donorId },
+    select: {
+      id: true,
+      fullName: true,
+      email: true,
+      phone: true,
+      cnicNumber: true,
+      bloodGroup: true,
+      city: true,
+      area: true,
+      latitude: true,
+      longitude: true,
+      isAvailable: true,
+      isProfileCompleted: true,
+      isEmailVerified: true,
+      profileImage: true,
+      role: true,
+      createdAt: true,
+      updatedAt: true,
+      documents: {
+        select: {
+          id: true,
+          type: true,
+          fileUrl: true,
+          uploadedAt: true,
+        },
+      },
+      bloodTestReports: {
+        select: {
+          id: true,
+          reportUrl: true,
+          bloodGroup: true,
+          testedAt: true,
+          expiresAt: true,
+          status: true,
+          uploadedAt: true,
+        },
+      },
+    },
+  });
+  if (!donor) {
+    throw ApiError.notFound('Donor not found');
+  }
+  return ApiResponseHandler.success(res, donor, 'Profile fetched successfully');
 });
 
 export const logout = asyncHandler(async (req: Request, res: Response) => {
@@ -68,7 +119,7 @@ export const logoutAll = asyncHandler(async (req: Request, res: Response) => {
 export const verifyEmail = asyncHandler(async (req: Request, res: Response) => {
   const result = verifyEmailSchema.safeParse(req.body);
   if (!result.success) {
-    throw ApiError.badRequest(result.error.errors[0].message);
+    throw ApiError.badRequest('Validation failed', formatZodErrors(result.error));
   }
 
   const data = await authService.verifyEmail(result.data);
@@ -79,7 +130,7 @@ export const resendVerificationOtp = asyncHandler(async (req: Request, res: Resp
   const { email } = req.body;
 
   if (!email) {
-    throw ApiError.badRequest('Email is required');
+    throw ApiError.badRequest('Validation failed', [{ field: 'email', message: 'Email is required' }]);
   }
 
   const data = await authService.resendVerificationOtp(email);
@@ -89,7 +140,7 @@ export const resendVerificationOtp = asyncHandler(async (req: Request, res: Resp
 export const forgotPassword = asyncHandler(async (req: Request, res: Response) => {
   const result = forgotPasswordSchema.safeParse(req.body);
   if (!result.success) {
-    throw ApiError.badRequest(result.error.errors[0].message);
+    throw ApiError.badRequest('Validation failed', formatZodErrors(result.error));
   }
 
   const data = await authService.forgotPassword(result.data);
@@ -99,7 +150,7 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
 export const resetPassword = asyncHandler(async (req: Request, res: Response) => {
   const result = resetPasswordSchema.safeParse(req.body);
   if (!result.success) {
-    throw ApiError.badRequest(result.error.errors[0].message);
+    throw ApiError.badRequest('Validation failed', formatZodErrors(result.error));
   }
 
   const data = await authService.resetPassword(result.data);

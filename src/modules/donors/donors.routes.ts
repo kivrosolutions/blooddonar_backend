@@ -7,7 +7,7 @@ const router = Router();
 router.use(authenticate);
 
 router.get('/search', searchDonors);
-router.get('/', authorize('ADMIN'), getAllDonors);
+router.get('/', getAllDonors);
 router.get('/:id', getDonorById);
 router.put('/:id', authorize('ADMIN'), updateDonor);
 router.delete('/:id', authorize('ADMIN'), deleteDonor);

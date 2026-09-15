@@ -2,15 +2,17 @@ import { Request, Response } from 'express';
 import { asyncHandler } from '../../utils/asyncHandler';
 import { ApiResponseHandler } from '../../utils/apiResponse';
 import { DonorsService } from './donors.service';
-import { updateDonorSchema, donorIdParam } from './donors.schema';
+import { updateDonorSchema, donorIdParam, donorsQuerySchema } from './donors.schema';
 import { ApiError } from '../../utils/ApiError';
 import { AuthRequest } from '../../types/auth.types';
 
 const donorsService = new DonorsService();
 
-export const getAllDonors = asyncHandler(async (_req: Request, res: Response) => {
-  const donors = await donorsService.getAll();
-  return ApiResponseHandler.success(res, donors, 'Donors fetched successfully');
+export const getAllDonors = asyncHandler(async (req: Request, res: Response) => {
+  const query = donorsQuerySchema.parse(req.query);
+  const authReq = req as AuthRequest;
+  const result = await donorsService.getAll(query, authReq.user.donorId);
+  return ApiResponseHandler.success(res, result.donors, 'Donors fetched successfully', 200, result.pagination);
 });
 
 export const getDonorById = asyncHandler(async (req: Request, res: Response) => {

@@ -1,20 +1,9 @@
 import { Router } from 'express';
-import {
-  createBloodRequest,
-  getAllBloodRequests,
-  getBloodRequestById,
-  updateBloodRequest,
-  cancelBloodRequest,
-  searchBloodRequests,
-} from './blood-requests.controller';
+import { createBloodRequest } from './blood-requests.controller';
+import { authenticate } from '../auth/auth.middleware';
 
 const router = Router();
 
-router.post('/', createBloodRequest);
-router.get('/search', searchBloodRequests);
-router.get('/', getAllBloodRequests);
-router.get('/:id', getBloodRequestById);
-router.put('/:id', updateBloodRequest);
-router.delete('/:id', cancelBloodRequest);
+router.post('/:donorId', authenticate, createBloodRequest);
 
 export { router as bloodRequestsRouter };

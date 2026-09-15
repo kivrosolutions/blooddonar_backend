@@ -1,17 +1,24 @@
+export interface ValidationError {
+  field: string;
+  message: string;
+}
+
 export class ApiError extends Error {
   public readonly statusCode: number;
   public readonly isOperational: boolean;
+  public readonly errors?: ValidationError[];
 
-  constructor(statusCode: number, message: string, isOperational = true) {
+  constructor(statusCode: number, message: string, isOperational = true, errors?: ValidationError[]) {
     super(message);
     this.statusCode = statusCode;
     this.isOperational = isOperational;
+    this.errors = errors;
     Object.setPrototypeOf(this, ApiError.prototype);
     Error.captureStackTrace(this, this.constructor);
   }
 
-  static badRequest(message: string): ApiError {
-    return new ApiError(400, message);
+  static badRequest(message: string, errors?: ValidationError[]): ApiError {
+    return new ApiError(400, message, true, errors);
   }
 
   static unauthorized(message = 'Unauthorized'): ApiError {

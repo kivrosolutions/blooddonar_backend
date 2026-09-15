@@ -1,178 +1,59 @@
 import prisma from '../../config/database';
 import { ApiError } from '../../utils/ApiError';
-import { CreateBloodRequestInput, UpdateBloodRequestInput } from './blood-requests.schema';
-import { BloodGroup } from '@prisma/client';
+import { EmailService } from '../../services/email.service';
+
+const emailService = new EmailService();
 
 export class BloodRequestsService {
-  async create(data: CreateBloodRequestInput) {
+  async create(donorId: string, requesterDonorId: string) {
+    if (donorId === requesterDonorId) {
+      throw ApiError.badRequest('You cannot request blood from yourself');
+    }
+
+    const requester = await prisma.donor.findUnique({
+      where: { id: requesterDonorId },
+      select: { id: true, fullName: true, phone: true, email: true, bloodGroup: true },
+    });
+
+    if (!requester) {
+      throw ApiError.unauthorized('Requester not found');
+    }
+
+    const donor = await prisma.donor.findUnique({
+      where: { id: donorId },
+      select: { id: true, fullName: true, email: true, isAvailable: true, deletedAt: true },
+    });
+
+    if (!donor || donor.deletedAt) {
+      throw ApiError.notFound('Donor not found');
+    }
+
+    if (!donor.isAvailable) {
+      throw ApiError.badRequest('This donor is currently not available');
+    }
+
     const request = await prisma.bloodRequest.create({
       data: {
-        requesterName: data.requesterName,
-        requesterPhone: data.requesterPhone,
-        requesterEmail: data.requesterEmail,
-        patientName: data.patientName,
-        hospitalName: data.hospitalName,
-        bloodGroup: data.bloodGroup,
-        city: data.city,
-        area: data.area,
-        latitude: data.latitude,
-        longitude: data.longitude,
-        unitsRequired: data.unitsRequired,
-        requiredByDate: data.requiredByDate ? new Date(data.requiredByDate) : null,
-        notes: data.notes,
+        requesterName: requester.fullName,
+        requesterPhone: requester.phone,
+        requesterEmail: requester.email,
+        bloodGroup: requester.bloodGroup,
+        city: '',
+        area: '',
         status: 'PENDING',
       },
-      select: {
-        id: true,
-        requesterName: true,
-        requesterPhone: true,
-        requesterEmail: true,
-        patientName: true,
-        hospitalName: true,
-        bloodGroup: true,
-        city: true,
-        area: true,
-        unitsRequired: true,
-        requiredByDate: true,
-        notes: true,
-        status: true,
-        createdAt: true,
-      },
+      select: { id: true, createdAt: true },
     });
+
+    await emailService.sendBloodRequestEmail(
+      donor.email,
+      donor.fullName,
+      requester.fullName,
+      requester.phone,
+      requester.email,
+      requester.bloodGroup,
+    );
 
     return request;
-  }
-
-  async getAll() {
-    return prisma.bloodRequest.findMany({
-      select: {
-        id: true,
-        requesterName: true,
-        requesterPhone: true,
-        bloodGroup: true,
-        city: true,
-        area: true,
-        unitsRequired: true,
-        requiredByDate: true,
-        status: true,
-        createdAt: true,
-      },
-      orderBy: { createdAt: 'desc' },
-    });
-  }
-
-  async getById(id: string) {
-    const request = await prisma.bloodRequest.findUnique({
-      where: { id },
-      select: {
-        id: true,
-        requesterName: true,
-        requesterPhone: true,
-        requesterEmail: true,
-        patientName: true,
-        hospitalName: true,
-        bloodGroup: true,
-        city: true,
-        area: true,
-        latitude: true,
-        longitude: true,
-        unitsRequired: true,
-        requiredByDate: true,
-        notes: true,
-        status: true,
-        fulfilledAt: true,
-        createdAt: true,
-      },
-    });
-
-    if (!request) {
-      throw ApiError.notFound('Blood request not found');
-    }
-
-    return request;
-  }
-
-  async update(id: string, data: UpdateBloodRequestInput, requesterEmail: string) {
-    const request = await prisma.bloodRequest.findUnique({
-      where: { id },
-    });
-
-    if (!request) {
-      throw ApiError.notFound('Blood request not found');
-    }
-
-    if (request.requesterEmail !== requesterEmail) {
-      throw ApiError.forbidden('You can only update your own blood requests');
-    }
-
-    const updateData: Record<string, unknown> = { ...data };
-
-    if (data.requiredByDate) {
-      updateData.requiredByDate = new Date(data.requiredByDate);
-    }
-
-    const updated = await prisma.bloodRequest.update({
-      where: { id },
-      data: updateData,
-      select: {
-        id: true,
-        requesterName: true,
-        requesterPhone: true,
-        requesterEmail: true,
-        patientName: true,
-        hospitalName: true,
-        bloodGroup: true,
-        city: true,
-        area: true,
-        unitsRequired: true,
-        requiredByDate: true,
-        notes: true,
-        status: true,
-        updatedAt: true,
-      },
-    });
-
-    return updated;
-  }
-
-  async cancel(id: string, requesterEmail: string) {
-    const request = await prisma.bloodRequest.findUnique({
-      where: { id },
-    });
-
-    if (!request) {
-      throw ApiError.notFound('Blood request not found');
-    }
-
-    if (request.requesterEmail !== requesterEmail) {
-      throw ApiError.forbidden('You can only cancel your own blood requests');
-    }
-
-    await prisma.bloodRequest.update({
-      where: { id },
-      data: { status: 'CANCELLED' },
-    });
-  }
-
-  async search(city: string, bloodGroup: string) {
-    return prisma.bloodRequest.findMany({
-      where: {
-        city,
-        bloodGroup: bloodGroup as BloodGroup,
-        status: 'PENDING',
-      },
-      select: {
-        id: true,
-        requesterName: true,
-        bloodGroup: true,
-        city: true,
-        area: true,
-        unitsRequired: true,
-        requiredByDate: true,
-        status: true,
-        createdAt: true,
-      },
-      orderBy: { createdAt: 'desc' },
-    });
   }
 }

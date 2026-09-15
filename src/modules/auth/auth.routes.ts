@@ -13,16 +13,14 @@ import {
 } from './auth.controller';
 import {
   updateProfile,
-  updateProfileImage,
-  uploadDocument,
-  getDocuments,
+  completeProfile,
 } from './profile.controller';
 import { authenticate } from './auth.middleware';
-import { uploadRegistration, uploadSingle, uploadSingleDocument } from '../uploads/uploads.middleware';
+import { uploadRegistration } from '../uploads/uploads.middleware';
 
 const router = Router();
 
-router.post('/register', uploadRegistration, register);
+router.post('/register', register);
 router.post('/login', login);
 router.post('/refresh', refreshToken);
 router.post('/verify-email', verifyEmail);
@@ -33,9 +31,7 @@ router.post('/logout', authenticate, logout);
 router.post('/logout-all', authenticate, logoutAll);
 router.get('/profile', authenticate, getProfile);
 
-router.put('/profile', authenticate, updateProfile);
-router.post('/profile/image', authenticate, uploadSingle, updateProfileImage);
-router.post('/profile/documents', authenticate, uploadSingleDocument, uploadDocument);
-router.get('/profile/documents', authenticate, getDocuments);
+router.post('/profile', authenticate, uploadRegistration, completeProfile);
+router.put('/profile', authenticate, uploadRegistration, updateProfile);
 
 export { router as authRouter };

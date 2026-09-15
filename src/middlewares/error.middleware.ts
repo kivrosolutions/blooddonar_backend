@@ -4,11 +4,15 @@ import multer from 'multer';
 
 export const errorHandler = (err: Error, _req: Request, res: Response, _next: NextFunction) => {
   if (err instanceof ApiError) {
-    return res.status(err.statusCode).json({
+    const response: Record<string, unknown> = {
       success: false,
       message: err.message,
       error: err.message,
-    });
+    };
+    if (err.errors) {
+      response.errors = err.errors;
+    }
+    return res.status(err.statusCode).json(response);
   }
 
   if (err instanceof multer.MulterError) {

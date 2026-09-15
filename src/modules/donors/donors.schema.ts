@@ -38,4 +38,16 @@ export const donorIdParam = z.object({
   id: z.string().uuid('Invalid donor ID'),
 });
 
+export const donorsQuerySchema = z.object({
+  page: z.coerce.number().min(1).default(1),
+  limit: z.coerce.number().min(1).max(100).default(20),
+  city: z.string().optional(),
+  bloodGroup: bloodGroupEnum.optional(),
+  isAvailable: z.coerce.boolean().optional(),
+  sortBy: z.enum(['createdAt', 'fullName', 'bloodGroup']).default('createdAt'),
+  order: z.enum(['asc', 'desc']).default('desc'),
+  radius: z.coerce.number().min(0.1).max(500).optional(),
+});
+
 export type UpdateDonorInput = z.infer<typeof updateDonorSchema>;
+export type DonorsQueryInput = z.infer<typeof donorsQuerySchema>;

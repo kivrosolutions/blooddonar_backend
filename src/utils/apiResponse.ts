@@ -5,15 +5,30 @@ interface ApiResponse<T> {
   message: string;
   data?: T;
   error?: string;
+  pagination?: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
 }
 
 export class ApiResponseHandler {
-  static success<T>(res: Response, data: T, message = 'Success', statusCode = 200): Response {
+  static success<T>(
+    res: Response,
+    data: T,
+    message = 'Success',
+    statusCode = 200,
+    pagination?: { page: number; limit: number; total: number; totalPages: number },
+  ): Response {
     const response: ApiResponse<T> = {
       success: true,
       message,
       data,
     };
+    if (pagination) {
+      response.pagination = pagination;
+    }
     return res.status(statusCode).json(response);
   }
 

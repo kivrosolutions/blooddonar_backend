@@ -9,18 +9,25 @@ const bloodGroupEnum = z.enum([
   'AB_NEGATIVE',
   'O_POSITIVE',
   'O_NEGATIVE',
-]);
+], { required_error: 'Blood group is required' });
+
+export const completeProfileSchema = z.object({
+  latitude: z.coerce.number({ required_error: 'Latitude is required' }),
+  longitude: z.coerce.number({ required_error: 'Longitude is required' }),
+  isAvailable: z.coerce.boolean().optional().default(true),
+});
 
 export const updateProfileSchema = z
   .object({
     fullName: z.string().min(2, 'Full name must be at least 2 characters').optional(),
     phone: z.string().min(10, 'Phone number must be at least 10 digits').optional(),
+    cnicNumber: z.string().min(13, 'CNIC must be 13 digits').optional(),
     bloodGroup: bloodGroupEnum.optional(),
     city: z.string().min(2, 'City is required').optional(),
     area: z.string().min(2, 'Area is required').optional(),
-    latitude: z.number().optional(),
-    longitude: z.number().optional(),
-    isAvailable: z.boolean().optional(),
+    latitude: z.coerce.number().optional(),
+    longitude: z.coerce.number().optional(),
+    isAvailable: z.coerce.boolean().optional(),
     currentPassword: z.string().min(6).optional(),
     newPassword: z.string().min(6).optional(),
   })
@@ -33,11 +40,5 @@ export const updateProfileSchema = z
     { message: 'Both currentPassword and newPassword are required together' },
   );
 
-export const uploadDocumentSchema = z.object({
-  type: z.enum(['CNIC_FRONT', 'CNIC_BACK'], {
-    required_error: 'Document type is required (CNIC_FRONT or CNIC_BACK)',
-  }),
-});
-
+export type CompleteProfileInput = z.infer<typeof completeProfileSchema>;
 export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
-export type UploadDocumentInput = z.infer<typeof uploadDocumentSchema>;

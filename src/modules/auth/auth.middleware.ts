@@ -17,7 +17,13 @@ export const authenticate = async (req: Request, _res: Response, next: NextFunct
 
     const donor = await prisma.donor.findUnique({
       where: { id: payload.donorId },
-      select: { id: true, email: true, role: true, isActive: true, isBanned: true },
+      select: {
+        id: true,
+        email: true,
+        role: true,
+        isActive: true,
+        isBanned: true,
+      },
     });
 
     if (!donor) {

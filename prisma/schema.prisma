@@ -28,12 +28,6 @@ enum DocumentType {
   CNIC_BACK
 }
 
-enum DocumentStatus {
-  PENDING
-  VERIFIED
-  REJECTED
-}
-
 enum ReportStatus {
   ACTIVE
   EXPIRED
@@ -86,7 +80,8 @@ model Donor {
   area             String
   latitude         Float?
   longitude        Float?
-  isAvailable      Boolean  @default(true)
+  isAvailable      Boolean  @default(false)
+  isProfileCompleted Boolean @default(false)
   isVerified       Boolean  @default(false)
   isActive         Boolean  @default(true)
   isBanned         Boolean  @default(false)
@@ -110,6 +105,11 @@ model Donor {
   @@index([isAvailable])
   @@index([isVerified])
   @@index([phone])
+  @@index([deletedAt, createdAt])
+  @@index([deletedAt, city])
+  @@index([deletedAt, bloodGroup])
+  @@index([latitude, longitude])
+  @@index([deletedAt, latitude, longitude])
   @@map("donors")
 }
 
@@ -133,24 +133,18 @@ model DonorSession {
 }
 
 model DonorDocument {
-  id              String         @id @default(uuid())
-  donorId         String
-  type            DocumentType
-  fileUrl         String
-  fileId          String?
-  mimeType        String
-  fileSize        Int
-  status          DocumentStatus @default(PENDING)
-  rejectionReason String?
-  notes           String?
-  uploadedAt      DateTime       @default(now())
-  reviewedAt      DateTime?
-  reviewedBy      String?
+  id         String       @id @default(uuid())
+  donorId    String
+  type       DocumentType
+  fileUrl    String
+  fileId     String?
+  mimeType   String
+  fileSize   Int
+  uploadedAt DateTime     @default(now())
 
   donor Donor @relation(fields: [donorId], references: [id], onDelete: Cascade)
 
   @@index([donorId])
-  @@index([status])
   @@map("donor_documents")
 }
 

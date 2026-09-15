@@ -7,14 +7,12 @@ import {
   TokenPayload,
 } from '../../utils/token';
 import { RegisterInput, LoginInput, VerifyEmailInput, ForgotPasswordInput, ResetPasswordInput } from './auth.schema';
-import { UploadsService } from '../uploads/uploads.service';
 import { EmailService } from '../../services/email.service';
 
-const uploadsService = new UploadsService();
 const emailService = new EmailService();
 
 export class AuthService {
-  async register(data: RegisterInput, files?: { [fieldname: string]: Express.Multer.File[] }) {
+  async register(data: RegisterInput) {
     const existingDonor = await prisma.donor.findFirst({
       where: {
         OR: [{ email: data.email }, { phone: data.phone }, { cnicNumber: data.cnicNumber }],
@@ -45,8 +43,6 @@ export class AuthService {
         bloodGroup: data.bloodGroup,
         city: data.city,
         area: data.area,
-        latitude: data.latitude,
-        longitude: data.longitude,
         emailVerificationToken: otp,
         emailVerificationExpires,
         agreedToTermsAt: data.agreedToTermsAt ? new Date(data.agreedToTermsAt) : new Date(),
@@ -59,103 +55,11 @@ export class AuthService {
         bloodGroup: true,
         city: true,
         area: true,
-        profileImage: true,
         role: true,
         isEmailVerified: true,
         createdAt: true,
       },
     });
-
-    let profileImageUrl: string | null = null;
-    let profileImageFileId: string | null = null;
-    let cnicFrontResult: { url: string; fileId: string } | null = null;
-    let cnicBackResult: { url: string; fileId: string } | null = null;
-
-    if (files) {
-      const profileFile = files.profileImage?.[0];
-      const cnicFrontFile = files.cnicFront?.[0];
-      const cnicBackFile = files.cnicBack?.[0];
-
-      const uploadResults = await Promise.all([
-        profileFile
-          ? uploadsService.uploadToImageKit(profileFile.buffer, profileFile.originalname, `/donors/${donor.id}/profile`, profileFile.mimetype)
-          : Promise.resolve(null),
-        cnicFrontFile
-          ? uploadsService.uploadToImageKit(cnicFrontFile.buffer, cnicFrontFile.originalname, `/donors/${donor.id}/cnic`, cnicFrontFile.mimetype)
-          : Promise.resolve(null),
-        cnicBackFile
-          ? uploadsService.uploadToImageKit(cnicBackFile.buffer, cnicBackFile.originalname, `/donors/${donor.id}/cnic`, cnicBackFile.mimetype)
-          : Promise.resolve(null),
-      ]);
-
-      const [profileResult, cnicFrontUploaded, cnicBackUploaded] = uploadResults;
-
-      if (profileResult) {
-        profileImageUrl = profileResult.url;
-        profileImageFileId = profileResult.fileId;
-      }
-      if (cnicFrontUploaded) {
-        cnicFrontResult = { url: cnicFrontUploaded.url, fileId: cnicFrontUploaded.fileId };
-      }
-      if (cnicBackUploaded) {
-        cnicBackResult = { url: cnicBackUploaded.url, fileId: cnicBackUploaded.fileId };
-      }
-    }
-
-    if (profileImageUrl) {
-      await prisma.donor.update({
-        where: { id: donor.id },
-        data: {
-          profileImage: profileImageUrl,
-          profileImageFileId,
-        },
-      });
-      donor.profileImage = profileImageUrl;
-    }
-
-    const documentRecords: { type: string; fileUrl: string; mimeType: string; fileSize: number }[] = [];
-
-    if (cnicFrontResult) {
-      const cnicFrontFile = files?.cnicFront?.[0];
-      const doc = await prisma.donorDocument.create({
-        data: {
-          donorId: donor.id,
-          type: 'CNIC_FRONT',
-          fileUrl: cnicFrontResult.url,
-          fileId: cnicFrontResult.fileId,
-          mimeType: cnicFrontFile?.mimetype || 'application/octet-stream',
-          fileSize: cnicFrontFile?.size || 0,
-          status: 'PENDING',
-        },
-      });
-      documentRecords.push({
-        type: doc.type,
-        fileUrl: doc.fileUrl,
-        mimeType: doc.mimeType,
-        fileSize: doc.fileSize,
-      });
-    }
-
-    if (cnicBackResult) {
-      const cnicBackFile = files?.cnicBack?.[0];
-      const doc = await prisma.donorDocument.create({
-        data: {
-          donorId: donor.id,
-          type: 'CNIC_BACK',
-          fileUrl: cnicBackResult.url,
-          fileId: cnicBackResult.fileId,
-          mimeType: cnicBackFile?.mimetype || 'application/octet-stream',
-          fileSize: cnicBackFile?.size || 0,
-          status: 'PENDING',
-        },
-      });
-      documentRecords.push({
-        type: doc.type,
-        fileUrl: doc.fileUrl,
-        mimeType: doc.mimeType,
-        fileSize: doc.fileSize,
-      });
-    }
 
     const tokenPayload: TokenPayload = {
       donorId: donor.id,
@@ -182,7 +86,6 @@ export class AuthService {
 
     return {
       donor,
-      documents: documentRecords,
       accessToken,
       refreshToken,
       emailVerificationRequired: true,

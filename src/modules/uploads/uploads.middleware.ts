@@ -33,6 +33,7 @@ export const uploadRegistration = multer({
   { name: 'profileImage', maxCount: 1 },
   { name: 'cnicFront', maxCount: 1 },
   { name: 'cnicBack', maxCount: 1 },
+  { name: 'bloodReport', maxCount: 1 },
 ]);
 
 export const uploadSingle = multer({

@@ -9,44 +9,42 @@ const bloodGroupEnum = z.enum([
   'AB_NEGATIVE',
   'O_POSITIVE',
   'O_NEGATIVE',
-]);
+], { required_error: 'Blood group is required' });
 
 export const registerSchema = z.object({
-  fullName: z.string().min(2, 'Full name must be at least 2 characters'),
-  phone: z.string().min(10, 'Phone number must be at least 10 digits'),
-  email: z.string().email('Invalid email address'),
-  cnicNumber: z.string().min(13, 'CNIC must be 13 digits'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  fullName: z.string({ required_error: 'Full name is required' }).min(2, 'Full name must be at least 2 characters'),
+  phone: z.string({ required_error: 'Phone number is required' }).min(10, 'Phone number must be at least 10 digits'),
+  email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
+  cnicNumber: z.string({ required_error: 'CNIC number is required' }).min(13, 'CNIC must be 13 digits'),
+  password: z.string({ required_error: 'Password is required' }).min(6, 'Password must be at least 6 characters'),
   bloodGroup: bloodGroupEnum,
-  city: z.string().min(2, 'City is required'),
-  area: z.string().min(2, 'Area is required'),
-  latitude: z.coerce.number().optional(),
-  longitude: z.coerce.number().optional(),
+  city: z.string({ required_error: 'City is required' }).min(2, 'City is required'),
+  area: z.string({ required_error: 'Area is required' }).min(2, 'Area is required'),
   agreedToTermsAt: z.string().optional(),
 });
 
 export const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(1, 'Password is required'),
+  email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
+  password: z.string({ required_error: 'Password is required' }).min(1, 'Password is required'),
 });
 
 export const refreshSchema = z.object({
-  refreshToken: z.string().min(1, 'Refresh token is required'),
+  refreshToken: z.string({ required_error: 'Refresh token is required' }).min(1, 'Refresh token is required'),
 });
 
 export const verifyEmailSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  otp: z.string().length(6, 'OTP must be 6 digits'),
+  email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
+  otp: z.string({ required_error: 'OTP is required' }).length(6, 'OTP must be 6 digits'),
 });
 
 export const forgotPasswordSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
 });
 
 export const resetPasswordSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  otp: z.string().length(6, 'OTP must be 6 digits'),
-  newPassword: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
+  otp: z.string({ required_error: 'OTP is required' }).length(6, 'OTP must be 6 digits'),
+  newPassword: z.string({ required_error: 'New password is required' }).min(6, 'Password must be at least 6 characters'),
 });
 
 export type RegisterInput = z.infer<typeof registerSchema>;
