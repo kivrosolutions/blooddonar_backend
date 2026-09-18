@@ -1,4 +1,4 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import { ApiError } from '../utils/ApiError';
 
 function getRequiredEnv(name: string): string {
@@ -90,21 +90,26 @@ function createEmailTemplate(
   `;
 }
 
-const RESEND_API_KEY = getRequiredEnv('RESEND_API_KEY');
+const SMTP_HOST = getRequiredEnv('SMTP_HOST');
+const SMTP_PORT = parseInt(getRequiredEnv('SMTP_PORT'), 10);
+const SMTP_USER = getRequiredEnv('SMTP_USER');
+const SMTP_PASS = getRequiredEnv('SMTP_PASS');
 const EMAIL_FROM = getRequiredEnv('EMAIL_FROM');
 const EMAIL_REPLY_TO = getRequiredEnv('EMAIL_REPLY_TO');
 
-/**
- * Optional until the frontend is deployed.
- *
- * When FRONTEND_URL is missing, the welcome email will not show
- * the "Go to Dashboard" button.
- */
 const FRONTEND_URL = process.env.FRONTEND_URL
   ?.trim()
   .replace(/\/+$/, '');
 
-const resend = new Resend(RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  secure: SMTP_PORT === 465,
+  auth: {
+    user: SMTP_USER,
+    pass: SMTP_PASS,
+  },
+});
 
 const FROM_ADDRESS =
   `Kivro Solutions | Blood Donation <${EMAIL_FROM}>`;
@@ -130,26 +135,16 @@ export class EmailService {
     throwOnFailure = true,
   }: SendEmailOptions): Promise<void> {
     try {
-      const { data, error } = await resend.emails.send({
+      const info = await transporter.sendMail({
         from: FROM_ADDRESS,
-        to: [to],
+        to,
         replyTo: EMAIL_REPLY_TO,
         subject,
         html,
         text,
       });
 
-      if (error) {
-        console.error(`${failureMessage}:`, error);
-
-        if (throwOnFailure) {
-          throw ApiError.internal(failureMessage);
-        }
-
-        return;
-      }
-
-      console.log(`${logMessage}. Resend email ID: ${data?.id}`);
+      console.log(`${logMessage}. Message ID: ${info.messageId}`);
     } catch (error) {
       console.error(`${failureMessage}:`, error);
 

@@ -32,7 +32,7 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "resend": "^6.28.0",
+    "nodemailer": "^10.0.10",
     "zod": "^3.24.4"
   },
   "devDependencies": {
@@ -44,6 +44,7 @@
     "@types/morgan": "^1.9.9",
     "@types/multer": "^1.4.12",
     "@types/node": "^22.15.3",
+    "@types/nodemailer": "^8.0.2",
     "@typescript-eslint/eslint-plugin": "^8.31.0",
     "@typescript-eslint/parser": "^8.31.0",
     "eslint": "^8.57.1",
