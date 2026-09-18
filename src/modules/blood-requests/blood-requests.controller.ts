@@ -3,7 +3,7 @@ import { asyncHandler } from '../../utils/asyncHandler';
 import { ApiResponseHandler } from '../../utils/apiResponse';
 import { BloodRequestsService } from './blood-requests.service';
 import { ApiError } from '../../utils/ApiError';
-import { AuthRequest } from '../../types/auth.types';
+import { createBloodRequestSchema } from './blood-requests.schema';
 
 const bloodRequestsService = new BloodRequestsService();
 
@@ -18,7 +18,12 @@ export const createBloodRequest = asyncHandler(async (req: Request, res: Respons
     throw ApiError.badRequest('Invalid donor ID format');
   }
 
-  const authReq = req as AuthRequest;
-  const request = await bloodRequestsService.create(donorId, authReq.user.donorId);
+  const bodyResult = createBloodRequestSchema.safeParse(req.body);
+  if (!bodyResult.success) {
+    throw ApiError.badRequest(bodyResult.error.errors[0].message);
+  }
+
+  const { phone, note } = bodyResult.data;
+  const request = await bloodRequestsService.create(donorId, phone, note);
   return ApiResponseHandler.created(res, request, 'Blood request sent successfully');
 });

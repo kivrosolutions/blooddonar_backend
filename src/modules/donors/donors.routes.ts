@@ -4,12 +4,10 @@ import { authenticate, authorize } from '../auth/auth.middleware';
 
 const router = Router();
 
-router.use(authenticate);
-
 router.get('/search', searchDonors);
 router.get('/', getAllDonors);
 router.get('/:id', getDonorById);
-router.put('/:id', authorize('ADMIN'), updateDonor);
-router.delete('/:id', authorize('ADMIN'), deleteDonor);
+router.put('/:id', authenticate, authorize('ADMIN'), updateDonor);
+router.delete('/:id', authenticate, authorize('ADMIN'), deleteDonor);
 
 export { router as donorsRouter };

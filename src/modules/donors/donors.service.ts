@@ -24,9 +24,9 @@ interface DonorWithDistance {
 }
 
 export class DonorsService {
-  async getAll(query: DonorsQueryInput, donorId?: string) {
+  async getAll(query: DonorsQueryInput, donorId?: string, lat?: number, lng?: number) {
     if (query.radius !== undefined) {
-      return this.findNearby(query, donorId);
+      return this.findNearby(query, donorId, lat, lng);
     }
     return this.findAllPaginated(query, donorId);
   }
@@ -73,24 +73,32 @@ export class DonorsService {
     };
   }
 
-  private async findNearby(query: DonorsQueryInput, donorId?: string) {
-    if (!donorId) {
-      throw ApiError.unauthorized('Authentication required for radius filter');
-    }
+  private async findNearby(query: DonorsQueryInput, donorId?: string, lat?: number, lng?: number) {
+    let userLat: number;
+    let userLng: number;
 
-    const user = await prisma.donor.findUnique({
-      where: { id: donorId },
-      select: { latitude: true, longitude: true },
-    });
+    if (donorId) {
+      const user = await prisma.donor.findUnique({
+        where: { id: donorId },
+        select: { latitude: true, longitude: true },
+      });
 
-    if (!user?.latitude || !user?.longitude) {
-      throw ApiError.badRequest('Your profile location is not set. Please update your profile with latitude and longitude.');
+      if (!user?.latitude || !user?.longitude) {
+        throw ApiError.badRequest('Your profile location is not set. Please update your profile with latitude and longitude.');
+      }
+
+      userLat = user.latitude;
+      userLng = user.longitude;
+    } else if (lat !== undefined && lng !== undefined) {
+      userLat = lat;
+      userLng = lng;
+    } else {
+      throw ApiError.badRequest('Provide lat and lng query parameters, or login for auto-detection');
     }
 
     const { page, limit, city, bloodGroup, isAvailable } = query;
     const radius = query.radius!;
     const skip = (page - 1) * limit;
-    const { latitude: userLat, longitude: userLng } = user;
 
     const latDelta = radius / 111.0;
     const lngDelta = radius / (111.0 * Math.cos((userLat * Math.PI) / 180));

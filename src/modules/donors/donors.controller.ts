@@ -11,7 +11,8 @@ const donorsService = new DonorsService();
 export const getAllDonors = asyncHandler(async (req: Request, res: Response) => {
   const query = donorsQuerySchema.parse(req.query);
   const authReq = req as AuthRequest;
-  const result = await donorsService.getAll(query, authReq.user.donorId);
+  const donorId = authReq.user?.donorId;
+  const result = await donorsService.getAll(query, donorId, query.lat, query.lng);
   return ApiResponseHandler.success(res, result.donors, 'Donors fetched successfully', 200, result.pagination);
 });
 

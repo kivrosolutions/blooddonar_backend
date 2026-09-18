@@ -5,23 +5,10 @@ import { EmailService } from '../../services/email.service';
 const emailService = new EmailService();
 
 export class BloodRequestsService {
-  async create(donorId: string, requesterDonorId: string) {
-    if (donorId === requesterDonorId) {
-      throw ApiError.badRequest('You cannot request blood from yourself');
-    }
-
-    const requester = await prisma.donor.findUnique({
-      where: { id: requesterDonorId },
-      select: { id: true, fullName: true, phone: true, email: true, bloodGroup: true },
-    });
-
-    if (!requester) {
-      throw ApiError.unauthorized('Requester not found');
-    }
-
+  async create(donorId: string, phone: string, note?: string) {
     const donor = await prisma.donor.findUnique({
       where: { id: donorId },
-      select: { id: true, fullName: true, email: true, isAvailable: true, deletedAt: true },
+      select: { id: true, fullName: true, email: true, phone: true, bloodGroup: true, isAvailable: true, deletedAt: true },
     });
 
     if (!donor || donor.deletedAt) {
@@ -32,14 +19,19 @@ export class BloodRequestsService {
       throw ApiError.badRequest('This donor is currently not available');
     }
 
+    if (donor.phone === phone) {
+      throw ApiError.badRequest('You cannot request blood from yourself');
+    }
+
     const request = await prisma.bloodRequest.create({
       data: {
-        requesterName: requester.fullName,
-        requesterPhone: requester.phone,
-        requesterEmail: requester.email,
-        bloodGroup: requester.bloodGroup,
+        requesterName: '',
+        requesterPhone: phone,
+        requesterEmail: '',
+        bloodGroup: donor.bloodGroup,
         city: '',
         area: '',
+        notes: note,
         status: 'PENDING',
       },
       select: { id: true, createdAt: true },
@@ -48,10 +40,11 @@ export class BloodRequestsService {
     await emailService.sendBloodRequestEmail(
       donor.email,
       donor.fullName,
-      requester.fullName,
-      requester.phone,
-      requester.email,
-      requester.bloodGroup,
+      '',
+      phone,
+      '',
+      donor.bloodGroup,
+      note,
     );
 
     return request;

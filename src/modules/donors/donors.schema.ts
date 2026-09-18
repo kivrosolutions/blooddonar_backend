@@ -47,6 +47,8 @@ export const donorsQuerySchema = z.object({
   sortBy: z.enum(['createdAt', 'fullName', 'bloodGroup']).default('createdAt'),
   order: z.enum(['asc', 'desc']).default('desc'),
   radius: z.coerce.number().min(0.1).max(500).optional(),
+  lat: z.coerce.number().min(-90).max(90).optional(),
+  lng: z.coerce.number().min(-180).max(180).optional(),
 });
 
 export type UpdateDonorInput = z.infer<typeof updateDonorSchema>;
